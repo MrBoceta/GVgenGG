@@ -1,5 +1,4 @@
-<h1 align='center'>💳GVgen
-GG💳<h4>
+<h1 align='center'>💳GVgenGG💳<h4>
 
 
 Gerador de cartões de crédito que usa o algoritmo de Luhn.
