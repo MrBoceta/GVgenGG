@@ -13,7 +13,7 @@ REQUERIMIENTOS
 
 INSTALACION
 
-- git clone https://github.com/Mr.Boceta/GVgenGG.git
+- git clone https://github.com/MrBoceta/GVgenGG.git
 - cd GVgenGG
 - python3 GVgenGG
 
