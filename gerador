@@ -1,0 +1,24 @@
+import random
+import os
+from colorama import Fore, Style
+
+os.system('clear')
+# Leer nombres y apellidos desde archivos de texto
+with open("nomes.txt") as f:
+    nomes = f.read().splitlines()
+
+with open("sobrenome.txt") as f:
+    sobrenomes = f.read().splitlines()
+
+# Generar nombres y apellidos aleatorios
+resultados = []
+for i in range(300):
+    nombre_aleatorio = random.choice(nomes)
+    sobrenomes_aleatorio_1 = random.choice(sobrenomes)
+    sobrenomes_aleatorio_2 = random.choice(sobrenomes)
+    resultado = nombre_aleatorio + " " + sobrenomes_aleatorio_1 + " " + sobrenomes_aleatorio_2
+    resultados.append(resultado)
+
+# Mostrar resultados
+for resultado in resultados:
+    print(f"{Fore.GREEN}{resultado}{Style.RESET_ALL}")
