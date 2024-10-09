@@ -1,0 +1,120 @@
+import random
+import os
+from datetime import datetime
+from colorama import init, Fore, Back, Style
+
+init(autoreset=True)
+def generate_credit_card_number(bin_format):
+    out_cc = ""
+    # Sustituir x por numeros
+    for i in range(15):
+        if bin_format[i] in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"):
+            out_cc += bin_format[i]
+        elif bin_format[i] in ("x"):
+            out_cc += str(random.randint(0,9))
+        else:
+            raise ValueError(f"Caractere inválido no formato: {bin_format}")
+            
+    for i in range(10):
+        checksum_check = out_cc + str(i)
+        if card_luhn_checksum_is_valid(checksum_check):
+            out_cc += str(i)
+            break
+
+    if len(out_cc) != 16:
+        raise ValueError(f"O formato da bin deve ter 16 digitos: 654321xxxxxxxxxx ")
+
+    return out_cc
+
+def card_luhn_checksum_is_valid(card_number):
+    sum = 0
+    num_digits = len(card_number)
+    oddeven = num_digits & 1
+
+    for count in range(num_digits):
+        digit = int(card_number[count])
+        if not (( count & 1 ) ^ oddeven ):
+            digit *= 2
+        if digit > 9:
+            digit -= 9
+        sum += digit
+
+    return (sum % 10) == 0
+
+def main():
+    while True:
+        os.system('clear')
+        print(Fore.GREEN  + "**************************************")
+        print(Fore.GREEN  + "*        *      𝐆𝐕 𝐠𝐞𝐧 𝐆𝐆           *")
+        print(Fore.GREEN  + "*        *                           *")
+        print(Fore.GREEN  + "*  VISA  *    1234 5678 1510 2306    *")
+        print(Fore.GREEN  + "*        *                           *")
+        print(Fore.GREEN  + "*        *       𝐆.𝐕. 𝐓𝐑𝐀𝐌𝐏𝐎𝐒      *")
+        print(Fore.GREEN  + "*        *          15/28            *")
+        print(Fore.GREEN  + "*        *                           *")
+        print(Fore.GREEN  + "**************************************")
+        print(Fore.CYAN  + "1." + Fore.MAGENTA  + " Gerador de Cartão por BIN" + Fore.RESET)
+        print(Fore.CYAN  + "2." + Fore.MAGENTA  + " Gerador de CC (Visa, Mc...)" + Fore.RESET)
+        print(Fore.CYAN  + "3." + Fore.MAGENTA  + " Gerador de Nomes e Sobrenomes" + Fore.RESET)
+        print(Fore.CYAN  + "4." + Fore.MAGENTA  + " Checker BIN completo all" + Fore.RESET)
+        print(Fore.CYAN  + "5." + Fore.MAGENTA  + " Mais Informações de CC-GENPRO" + Fore.RESET)
+        print(Fore.CYAN  + "6." + Fore.MAGENTA  + " Sair do menu" + Fore.RESET)
+        print("")
+        option = input("Selecione uma opção: ")
+        print("")
+        if option == "1":
+            bin_format = input("Insira BIN: ")
+            try:
+                month = int(input("Insira Mês: "))
+                year = int(input("Insira Ano: "))
+                n = int(input("Insira Quantidade: "))
+                    
+                for i in range(n):
+                    cc_number = generate_credit_card_number(bin_format)
+                    cvv = str(random.randint(100, 999))
+                    amount = str(random.randint(1, 20000))
+                    date = f"{month}/{year % 100}"
+                    
+                    print(f"\nCartão de crédito: {Fore.GREEN}{cc_number}{Fore.RESET}")
+                    print(f"Data de validade: {Fore.GREEN}{date}{Fore.RESET}")
+                    print(f"Código de segurança CVV: {Fore.RED}{cvv}{Fore.RESET}")
+                    print(f"Valor da transação: {Fore.YELLOW}{amount}{Fore.RESET}\n")
+                    
+            except ValueError as e:
+                print(f"\nError: {str(e)}\n")
+                
+            input("Presione Enter para continuar...")
+        elif option == "2":
+            os.system('python3 .gencc.py')
+            input("Presione Enter para continuar...")
+        elif option == "3":
+            os.system('cd Nomes ; python3 generador')
+            input("Presione Enter para continuar...")
+        elif option == "4":
+            os.system('python3 .checker.py')
+            input("Presione Enter para continuar...")    
+        elif option == "5":
+             print("")
+             print(Fore.RED +"CONTATO E CÉDITOS" + Fore.RESET) 
+             print("")
+             print(Fore.RED + "CRIADOR:" + Fore.GREEN + " @GVsuporte" + Fore.RESET)
+             print(Fore.RED + "TELEGRAM:" + Fore.GREEN + " https://t.me/GVsuporte" + Fore.RESET)
+             print("")
+             print(Fore.RED +"PARA UM BOM FUNCIONAMENTO" + Fore.RESET)   
+             print("")
+             print(Fore.CYAN +"Instalar PIP e REQUESTS para fazer todas as solicitações." + Fore.RESET) 
+             print("")
+             print(Fore.GREEN +"sudo apt-get install python3-pip" + Fore.RESET)   
+             print(Fore.GREEN +"sudo pip3 install requests" + Fore.RESET) 
+             print(Fore.GREEN +"pip3 install colorama" + Fore.RESET)  
+             print("")
+             input("Presione Enter para continuar...") 
+        elif option == "6":
+            print(Fore.GREEN + "\n¡Recuerda que estamos de manera ONLINE en https://cc-genpro.com/ :)!\n")
+            break
+        else:
+            print(Fore.RED + "\nOpção inválida. Por favor, seleccione uma opção válida.\n")
+
+
+if __name__ == "__main__":
+    main()
