@@ -1,9 +1,9 @@
-<h1 align='center'>💳GVgenGG💳<h4>
+<h1 align='center'>🐾💳GVgenGG💳🐾<h4>
 
 
 Gerador de cartões de crédito que usa o algoritmo de Luhn.
 
-REQUERIMIENTOS
+🐾REQUERIMIENTOS🐾
 
 - apt install python3
 - apt install git
@@ -11,7 +11,7 @@ REQUERIMIENTOS
 - pip3 install requests
 - pip3 install colorama
 
-INSTALACION
+🐾INSTALACION🐾
 
 - git clone https://github.com/MrBoceta/GVgenGG.git
 - cd GVgenGG
@@ -20,4 +20,7 @@ INSTALACION
 
 ---
 
-# Telegram: https://t.me/GVsuporte
+# Telegram: 🐾https://t.me/GVsuporte🐾
+
+
+BY: @GVsuporte🐾
