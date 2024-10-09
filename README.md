@@ -1,4 +1,5 @@
-<h1 align='center'>💳CC-GENPRO V4💳<h4>
+<h1 align='center'>💳GVgen
+GG💳<h4>
 
 
 Gerador de cartões de crédito que usa o algoritmo de Luhn.
